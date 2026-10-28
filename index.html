@@ -143,9 +143,12 @@
 
       try {
         await loadCurrentState();
-      } catch (error) {
-        console.error("Could not load counter or background:", error);
-        counterElement.textContent = "Connection error";
+     } catch (error) {
+  counterElement.textContent =
+    "Error: " + (error.message || String(error));
+
+  console.error("Could not load counter or background:", error);
+}
       }
 
       db.channel("counter-live")

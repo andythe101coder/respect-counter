@@ -175,17 +175,9 @@
         .subscribe();
     }
 
-    if (
-      window.supabase &&
-      SUPABASE_URL.startsWith("https://") &&
-      !SUPABASE_URL.includes("https://igdsysiqnmkwfqhyfouu.supabase.co/rest/v1/") &&
-      !SUPABASE_KEY.includes("sb_publishable_L69GAD0r66l20nhoNiH1lA_le4PiO2C")
-    ) {
-      startApp();
-    } else {
-      counterElement.textContent = "Setup required";
-      console.error("Add your Supabase URL and publishable key.");
-    }
-  </script>
-</body>
-</html>
+  if (window.supabase) {
+  startApp();
+} else {
+  counterElement.textContent = "Supabase library failed to load";
+  console.error("Supabase JavaScript library is unavailable.");
+}

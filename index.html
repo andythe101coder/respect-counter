@@ -178,17 +178,21 @@
         .subscribe();
     }
 
-    if (
-      window.supabase &&
-      SUPABASE_URL.startsWith("https://") &&
-      !SUPABASE_URL.includes("YOUR_SUPABASE") &&
-      !SUPABASE_KEY.includes("YOUR_SUPABASE")
-    ) {
-      startApp();
-    } else {
-      counterElement.textContent = "Setup required";
-      console.error("Add your Supabase URL and publishable key.");
-    }
+   if (!window.supabase) {
+  counterElement.textContent = "Supabase library did not load";
+} else if (
+  !SUPABASE_URL.startsWith("https://") ||
+  SUPABASE_URL.includes("YOUR_SUPABASE") ||
+  SUPABASE_KEY.includes("YOUR_SUPABASE")
+) {
+  counterElement.textContent = "Check Supabase URL and key";
+} else {
+  counterElement.textContent = "Connecting...";
+  startApp().catch(error => {
+    counterElement.textContent =
+      "Startup error: " + (error.message || String(error));
+  });
+}
   </script>
 </body>
 </html>

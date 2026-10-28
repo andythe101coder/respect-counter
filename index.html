@@ -175,9 +175,17 @@
         .subscribe();
     }
 
-  if (window.supabase) {
-  startApp();
-} else {
-  counterElement.textContent = "Supabase library failed to load";
-  console.error("Supabase JavaScript library is unavailable.");
-}
+    if (
+      window.supabase &&
+      SUPABASE_URL.startsWith("https://") &&
+      !SUPABASE_URL.includes("YOUR_SUPABASE") &&
+      !SUPABASE_KEY.includes("YOUR_SUPABASE")
+    ) {
+      startApp();
+    } else {
+      counterElement.textContent = "Setup required";
+      console.error("Add your Supabase URL and publishable key.");
+    }
+  </script>
+</body>
+</html>

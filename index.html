@@ -178,7 +178,7 @@
         .subscribe();
     }
 
-   if (!window.supabase) {
+  if (!window.supabase) {
   counterElement.textContent = "Supabase library did not load";
 } else if (
   !SUPABASE_URL.startsWith("https://") ||
@@ -188,7 +188,12 @@
   counterElement.textContent = "Check Supabase URL and key";
 } else {
   counterElement.textContent = "Connecting...";
+
   startApp().catch(error => {
+    counterElement.textContent =
+      "Startup error: " + (error.message || String(error));
+  });
+}
     counterElement.textContent =
       "Startup error: " + (error.message || String(error));
   });

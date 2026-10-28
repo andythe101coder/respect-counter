@@ -46,8 +46,11 @@
 </head>
 
 <body>
-  <main id="counter" aria-live="polite">Loading...</main>
-
+  <main id="counter" aria-live="polite">JavaScript test...</main>
+<script>
+  document.getElementById("counter").textContent =
+    "JavaScript is working!";
+</script>
   <script>
     // PASTE YOUR ACTUAL SUPABASE VALUES HERE.
     const SUPABASE_URL = "https://igdsysiqnmkwfqhyfouu.supabase.co/rest/v1/";

@@ -143,9 +143,9 @@
 
       try {
         await loadCurrentState();
-     } catch (error) {
+    } catch (error) {
   counterElement.textContent =
-    "Error: " + (error.message || String(error));
+    "Database error: " + (error.message || String(error));
 
   console.error("Could not load counter or background:", error);
 }
